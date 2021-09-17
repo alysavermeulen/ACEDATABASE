@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <title>Index Webpage</title>
+    <link rel='stylesheet' href='styles.css' />
+</head>
+
+<body>
+    <div class='page'>
+        <header class='menu-container'>
+            <h1 class='logo'>455: Database Systems</h1>
+            <nav class='menu'>
+                <li class='dropdown'><span>Pages &#9662;</span>
+                    <ul class='features-menu'>           <!-- Start of submenu -->
+                      <li><a href='index.html'>Home</a></li>
+                    </ul>                                <!-- End of submenu -->
+                </li>
+                <li><a href='index.html'>Home</a></li>
+            </nav>
+        </header>
+
+
+        <article class='content'>
+            <header class='title'>
+                <h1>Project 1: To the Cloud</h1>
+                <p>Emilee Oquist, Colin Monaghan, and Alysa Vermillion.</p>
+            </header>
+
+            <aside class='image-holder'>
+                <img class='image' src='computer.png'>
+            </aside>
+
+            <section>
+                <h2>Questions:</h2>
+                <p>
+                <ol type="1">
+                    <li>
+                        <p class='question'>What command can you type into your server’s terminal to check if apache is
+                            currently running?</p>
+                        <p>systemctl status apache2</p>
+                    </li>
+                    <li>
+                        <p class='question'>Apache implements the HTTP protocol. The protocol is extremely simple, with
+                            just a few commands. What is the difference between the GET, POST, and HEAD commands?</p>
+                        <ul class="bulleted_answer">
+                            <li>The GET command retrieves data from the server from a specified resource.</li>
+                            <li>The POST command sends data to the server to update or create a specified resource.</li>
+                            <li>The HEAD command is similar to the GET command, except that it does not return the data
+                                to the user. These are used to check what a GET command will return before making the
+                                GET request.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class='question'>What is the difference between ServerRoot and DocumentRoot?</p>
+                        <p>ServerRoot = path to the webserver executable/dir</p>
+                        <p>DocumentRoot = the directory path of your files that are delivered by the server</p>
+                    </li>
+                    <li>
+                        <p class='question'>What port does apache listen to for HTTP connections from browsers by
+                            default?</p>
+                        <p>The apache listens to port 80 for HTTP connections from browsers.</p>
+                    </li>
+                    <li>
+                        <p class='question'>What file on your server contains apache’s traffic logs? What about apache’s
+                            error logs? These files tend to get very long, with the most recent logged events being
+                            appended to the end of the file. On the terminal, how can you view the last few lines of any
+                            file?</p>
+                        <ul class="bulleted_answer">
+                            <li>/var/log/apache2/access.log</li>
+                            <li>/var/log/apache2/error.log</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class='question'>What is a Directory Index file? Why would it be desirable to have one in
+                            each directory?</p>
+                        <p>DirectoryIndex is used to allow you to land default page when client access a directory. For
+                            example, When a visitor request a directory to access it on your website, you can define the
+                            file to load when they request to a directory.</p>
+                    </li>
+                    <li>
+                        <p class='question'>How do you get apache to redirect users to a specified page upon receiving a
+                            404?</p>
+                        <p>ErrorDocument 404 /&lt;URL&gt;	will give a local URL to redirect to
+                            <br>ErrorDocument 404 &lt;URL&gt; will give an external URL to redirect to (if the action is a valid URL).
+                            <br>ErrorDocument 404 “Text”		(if none of the above).
+                        </p>
+                    </li>
+                    <li>
+                        <p class='question'>How do you give every user on your Linux server their own web space?</p>
+                        <p>By running the following command: sudo a2enmod userdir. We created the module userdir.conf in
+                            the folder /etc/apache2/mods-available/ to enable users to have their own web space. Then
+                            under the dbteam user, we created a public_html folder to place html files
+                        </p>
+                    </li>
+                </ol>
+                </p>
+            </section>
+        </article>
+
+
+        <footer>
+            <p>Authored by: Emilee Oquist, Colin Monaghan, and Alysa Vermillion.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
