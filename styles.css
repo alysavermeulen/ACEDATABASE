@@ -1,131 +1,179 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  min-height: 100vh;
+  display: flex;
+  background-color: #d6e9fe;
+  flex-direction: column;
+}
 
-  a:link,
-  a:visited {
-    color: #fff;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #5D6063;
-    text-decoration: underline;
-  }
-  
+footer {
+  margin-top: auto;
+  padding-left: 4px;
+}
 
-  .page {
-    background-color: #D6E9FE;
-  }
-  
-  /* Menu */
-  .menu-container {
-    color: #fff;
-    background-color: #5995DA;  /* Blue */
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    
-    
-    
-    width: 100%;
-    padding: 50px;
-  }
-  
-  .menu {
-    margin-top: 15px;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-  }
-  
-  .menu > li {
-    display: inline;
-    margin-right: 50px;
-  }
-  
-  .menu > li:last-of-type {
-    margin-right: 0;
-  }
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: #5d6063;
+  text-decoration: underline;
+}
 
-  .dropdown {
-      position: relative;
-  }
+.page {
+  height: 100%;
+}
 
-  .dropdown > span {
-    z-index: 2;
-    position: relative;  /* This is important! */
-    cursor: pointer;
-  }
+/* Menu */
+.menu-container {
+  color: #fff;
+  background-color: #5995da; /* Blue */
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
 
-  /* Features Menu */
-  .features-menu {
-    display: none;
-  }
+  width: 100%;
+  padding: 50px;
+}
 
-  .dropdown:hover .features-menu {
-    display: flex;
-    flex-direction: column;
-    background: #B2D6FF;
-    border-radius: 5px;
-    padding-top: 60px;
-  
-    position: absolute;
-    top: -25px;
-    left: -30px;
+.menu {
+  margin-top: 15px;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
 
-    z-index: 1;
-  }
-  
-  .features-menu li {
-    list-style: none;
-    border-bottom: 1px solid #FFF;
-  
-    padding: 0 40px 10px 20px;
-    margin: 10px;
-  }
-  
-  .features-menu li:last-of-type {
-    border-bottom: none;
-  }
+.menu > li {
+  display: inline;
+  margin-right: 50px;
+}
 
-  /* Image */
-  .image_holder {
-    display:inline;
-  }
+.menu > li:last-of-type {
+  margin-right: 0;
+}
 
-  .image {
-    float: right;
-    height: max-content;
-    width: max-content;
-    margin: 2%;
-  }
+.dropdown {
+  position: relative;
+}
 
+.dropdown > span {
+  z-index: 2;
+  position: relative; /* This is important! */
+  cursor: pointer;
+}
 
-  /* Body */
+/* Features Menu */
+.features-menu {
+  display: none;
+}
 
-  .content {
-      display: block;
-      margin: 5%;
-  }
+.dropdown:hover .features-menu {
+  display: flex;
+  flex-direction: column;
+  background: #b2d6ff;
+  border-radius: 5px;
+  padding-top: 60px;
 
-  .title {
-      display: block;
-      margin-left: 10%;
-      padding-left: 5%;
-      padding-bottom: 10px;
-  }
+  position: absolute;
+  top: -25px;
+  left: -30px;
 
-  .question {
-      font-weight: bold;
-  }
+  z-index: 1;
+}
 
-  .bulleted_answer {
-    padding-left: 2%;
-  }
+.features-menu li {
+  list-style: none;
+  border-bottom: 1px solid #fff;
 
+  padding: 0 40px 10px 20px;
+  margin: 10px;
+}
 
+.features-menu li:last-of-type {
+  border-bottom: none;
+}
 
+/* Image */
+.image_holder {
+  display: inline;
+}
+
+.image {
+  float: right;
+  height: max-content;
+  width: max-content;
+  margin: 2%;
+}
+
+/* Body */
+
+.content {
+  display: block;
+  margin: 5%;
+}
+
+.title {
+  display: block;
+  margin-left: 10%;
+  padding-left: 5%;
+  padding-bottom: 10px;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.bulleted_answer {
+  padding-left: 2%;
+}
+
+/* insertPassengerForm */
+.insertPassengerForm {
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.insertPassengerForm > label {
+  display: block;
+}
+.insertPassengerForm > input[type="text"] {
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.insertPassengerForm > input[type="submit"] {
+  background-color: #5995da;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* showPassengers */
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-align:  center;
+  background-color:  white;
+}
