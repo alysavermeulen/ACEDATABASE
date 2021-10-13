@@ -15,55 +15,40 @@
                     <ul class="features-menu">
                         <!-- Start of submenu -->
                         <li><a href="index.html">Home</a></li>
+                        <li><a href="passengerIndex.html">Airplane Passengers</a></li>
                     </ul>
                     <!-- End of submenu -->
                 </li>
                 <li><a href="index.html">Home</a></li>
             </nav>
         </header>
-
-        <!--Title and Form-->
         <article class="content">
-            <header class="title">
-                <h2>List of all tables</h2>
+
+        <?php
+            $message = ""; // default success message (empty)
+
+            if(isset($_GET['success'])) { // if passenger info sucessfully added/updated
+                $successType = $_GET['success'];
+                if($successType == '1'){ // if passenger sucessfully added
+                    $message = "New passenger successfully added!";
+                }
+                if($successType == '2'){ // if passenger sucessfully updated
+                    $message = "Passenger information successfully updated!";
+                }
+                echo "$message";
+                echo "<br>";
+                echo "<br>";
+            }
+        ?>
+
+        <!--Title-->
+            <header>
+                <h2>Passengers</h2>
             </header>
 
-            <!-- List -->
+            <!-- Passenger Table -->
             <div>
                 <?php
-
-
-                    function displayHtmlTable($result_set, $tableName, $tableAttributes) {
-
-                        $result = '<table>';
-                        
-                        //the header of the table
-                        $result .= '<thead>';
-                        $result .= '<tr>';
-                        //create a header for each attribute
-                        for ($index = 0; $index < count($tableAttributes); $index++){
-                            $result .= '<td class="tableItem">' . $tableAttributes[$index] . '</td>';
-                        }
-                        $result .= '</tr>';
-                        $result .= '</thead>';
-                        
-                        //the body of the table
-                        $result .= '<tbody>';
-                        //create a row for each tuple
-                        foreach($result_set as $tuple) {
-                            $result .= '<tr>';
-                            //create an entry for each attribute
-                            for ($index = 0; $index < count($tableAttributes); $index++){
-                                $result .= '<td class="tableItem">' . $tuple[$index] . '</td>';
-                            }
-                            $result .= '</tr>';
-                        }
-                        $result .= '</tbody>';
-                        $result .= '<table>';
-                        
-                
-                        return $result;
-                    }
 
                     //path to the SQLite database file
                     $db_file = './myDB/airport.db';
@@ -75,39 +60,33 @@
                         //set errormode to use exceptions
                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-                        //----- Print out Passengers ---------
                         //return all passengers, and store the result set
-                        $table = "passengers";
-                        $query_str = "select * from \"$table\";";
-                        $result_set = $db->query($query_str);
-                        $attributes = array("f_name", "m_name", "l_name", "ssn");
-                        echo displayHtmlTable($result_set, $table, $attributes);
+                        $qry = "select * from passengers;";
+                        $result_set = $db->query($qry);
 
-                        //------ Print out planes ----------
-                        //return all passengers, and store the result set
-                        $table = "planes";
-                        $query_str = "select * from \"$table\";";
-                        $result_set = $db->query($query_str);
-                        $attributes = array("tail_no", "make", "model", "capacity", "mph");
-                        echo displayHtmlTable($result_set, $table, $attributes);
-
-
-                        //------- Print out onboard ---------------------
-                        //return all passengers, and store the result set
-                        $table = "onboard";
-                        $query_str = "select * from \"$table\";";
-                        $result_set = $db->query($query_str);
-                        $attributes = array("ssn", "flight_no", "seat");
-                        echo displayHtmlTable($result_set, $table, $attributes);
-
-
-                        //------- Print out flights ----------------------
-                        //return all passengers, and store the result set
-                        $query_str = "select * from flights;";
-                        $result_set = $db->query($query_str);
-                        $attributes = array("flight_no", "dep_loc", "dep_time", "arr_loc", "arr_time", "tail_no");
-                        echo displayHtmlTable($result_set, "flights", $attributes);
+                        //print the table
+                        echo '<br>
+                            <table>
+                                <thead>
+                                    <tr>
+                                    <th>First Name</th>
+                                    <th>Middle Initial</th>
+                                    <th>Last Name</th>
+                                    <th>SSN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                        foreach($result_set as $tuple){
+                            echo '<tr>
+                                    <td>'.$tuple['f_name'].'</td>
+                                    <td>'.$tuple['m_name'].'</td>
+                                    <td>'.$tuple['l_name'].'</td>
+                                    <td>'.$tuple['ssn'].'</td>
+                                    <td><a href="passengerForm.php?ssn='.$tuple['ssn'].'" style="color: #0b6fa6">Update</a></td>
+                                </tr>';
+                        }
+                        echo '</tbody>
+                                </table>';
 
                         //disconnect from db
                         $db = null;
@@ -119,10 +98,6 @@
 
             </div>
         </article>
-        <!-- Footer -->
-		<footer>
-			<p>Authored by: Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
-		</footer>
     </div>
 </body>
 </html>
