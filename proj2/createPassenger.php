@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db = null;
 
         // redirect to showPassengers.php
-        header("Location: http://localhost/showPassengers.php?success=1");
+        header("Location: ./showPassengers.php?success=1");
         exit();
     }
     catch(PDOException $e) {
