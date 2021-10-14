@@ -65,19 +65,18 @@ if(isset($_GET['ssn'])) {
 	</head>
 	<body>
 		<div class="page">
-			<header class="menu-container">
-				<h1 class="logo">455: Database Systems</h1>
-				<nav class="menu">
-					<li class="dropdown">
-						<span>Pages &#9662;</span>
-						<ul class="features-menu">
+			<header class='menu-container'>
+				<h1 class='logo'>455: Database Systems</h1>
+				<nav class='menu'>
+					<li class='dropdown'><span>Pages &#9662;</span>
+						<ul class='features-menu'>
 							<!-- Start of submenu -->
-							<li><a href="index.html">Home</a></li>
-							<li><a href="passengerIndex.html">Airplane Passengers</a></li>
-						</ul>
+						<li><a href='../index.html'>Proj1</a></li>
+						<li><a href="./passengerIndex.html">Proj2: Airplane Passengers</a></li>
+						</ul>                                
 						<!-- End of submenu -->
 					</li>
-					<li><a href="index.html">Home</a></li>
+					<li><a href='./passengerIndex.html'>Home</a></li>
 				</nav>
 			</header>
 
