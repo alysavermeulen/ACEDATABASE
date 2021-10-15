@@ -38,6 +38,11 @@
                 echo "<br>";
                 echo "<br>";
             }
+            if(isset($_GET['error'])) { // if ssn being updated was invalid
+                echo "SSN was invalid!";
+                echo "<br>";
+                echo "<br>";
+            }​
         ?>
 
         <!--Title-->
