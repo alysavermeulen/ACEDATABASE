@@ -39,7 +39,8 @@
                 echo "<br>";
             }
             if(isset($_GET['error'])) { // if ssn being updated was invalid
-                echo "No passenger with inputed SSN was found! Please reselect.";
+                $message = "No passenger with inputed SSN was found! Please reselect.";
+                echo "$message";
                 echo "<br>";
                 echo "<br>";
             }​
