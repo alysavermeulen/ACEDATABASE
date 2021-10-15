@@ -42,13 +42,6 @@ if(isset($_GET['ssn'])) {
 		$stmt->execute([$_GET['ssn']]);
 		$tuple = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		//check if ssn is invalid
-		if (empty($tuple)){
-			//if ssn is invalid, go to the showPassengers page
-			header("Location: showPassengers.php?error=1");
-			}
-
-
 		// adjust passenger info variables
 		$f_name = $tuple['f_name'];
 		$l_name = $tuple['l_name'];
