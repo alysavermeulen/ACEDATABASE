@@ -39,10 +39,14 @@
                 echo "<br>";
             }
             if(isset($_GET['error'])) { // if ssn being updated was invalid
-                $message = "No passenger with inputed SSN was found! Please reselect.";
-                echo "$message";
-                echo "<br>";
-                echo "<br>";
+                $errorType = $_GET['error'];
+                if($errorType == '1'){
+                    $message = "No passenger with inputed SSN was found! Please reselect.";
+                    echo "$message";
+                    echo "<br>";
+                    echo "<br>";
+                }
+
             }​
         ?>
 
