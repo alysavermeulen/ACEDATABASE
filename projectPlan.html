@@ -1,95 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Index Webpage</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Index Webpage</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
 
-  <body>
-    <div class="page">
-      <header class="menu-container">
-        <h1 class="logo">455: Database Systems</h1>
-        <nav class="menu">
-          <li class="dropdown">
-            <span>Pages &#9662;</span>
-            <ul class="features-menu">
-              <!-- Start of submenu -->
-              <li><a href="./index.html">Proj1</a></li>
-              <li>
-                <a href="proj2/passengerIndex.html"
-                  >Proj2: Airplane Passengers</a
-                >
-              </li>
-              <li><a href="./projectPlan.html">Proj3: Project Proposal</a></li>
-            </ul>
-            <!-- End of submenu -->
-          </li>
-          <li><a href="./index.html">Home</a></li>
-        </nav>
-      </header>
+	<body>
+		<div class="page">
+			<header class="menu-container">
+				<h1 class="logo">455: Database Systems</h1>
+				<nav class="menu">
+					<li class="dropdown">
+						<span>Pages &#9662;</span>
+						<ul class="features-menu">
+							<!-- Start of submenu -->
+							<li><a href="./index.html">Proj1</a></li>
+							<li>
+								<a href="proj2/passengerIndex.html"
+									>Proj2: Airplane Passengers</a
+								>
+							</li>
+							<li><a href="./projectPlan.html">Proj3: Project Proposal</a></li>
+						</ul>
+						<!-- End of submenu -->
+					</li>
+					<li><a href="./index.html">Home</a></li>
+				</nav>
+			</header>
 
-      <article class="content">
-        <header class="title">
-          <h1>Project Proposal</h1>
-          <p>Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
-        </header>
+			<article class="content">
+				<header class="title">
+					<h1>Project Proposal</h1>
+					<p>Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
+				</header>
 
-        <aside class="image-holder">
-          <img class="image" src="computer.png" />
-        </aside>
+				<section>
+					<h2>Section I: Project Vision</h2>
+					<p>Grocery List</p>
+					<p>
+						Describe your project vision. Explain the problem you’re trying to
+						solve, and why you believe a database solution is necessary.
+					</p>
+					<br />
+					<h2>Section II: Product Features</h2>
+					<p>
+						As you can see in the examples above, it’s important to list the
+						type of user(s) involved in each feature, followed by a concise and
+						independent “unit of work.”
+					</p>
+					<br />
+					<ul>
+						<li>Feature:</li>
+						<li>Feature:</li>
+						<li>Feature:</li>
+						<li>Feature:</li>
+						<li>Feature:</li>
+						<li>Feature:</li>
+						<li>Feature:</li>
+					</ul>
+					<br />
+					<h2>Section III: Database Schema</h2>
+					<br />
+					<aside class="image-holder">
+						<img class="image" src="DatabaseSchema.svg" />
+					</aside>
+					<h3>User:</h3>
+					<p>
+						This relation stores the users of the app. Users are identified with
+						a unique username, a first name, a last name, and a password. A
+						User's username is a unique string that is the primary key for the
+						relation. When a User logs into the app, they enter their username
+						and password, which are verified with the username and password in
+						the database to authenticate their identity. Then, when the User is
+						perusing the app, their first and last name may be displayed on the
+						page, illustrating that they are logged in as themselves.
+					</p>
+					<h3>FoodItem:</h3>
+					<p>
+						This relation stores the FoodItems of the app. FoodItems are
+						identified with a unique foodID, a foodName, a price, and a
+						catagory. Every item in the grocery store is represented as a tuple
+						in the FoodItem relation. The foodID is a unique integer that is the
+						primary key of the relation. Each FoodItem has a name, a price, and
+						a catagory that is associated with it.
+					</p>
+					<h3>UserCart:</h3>
+					<p>
+						The UserCart relation holds the data of what foodItems each User has
+						in their cart. Each tuple is uniquely idenified by a userID and
+						foodID pair. The userID is a foreign key that points to a User's
+						username and the foodID is a foriegn key that points to a FoodItem's
+						foodID. The quantity attribute is an integer value that represents
+						the quantity of the FoodItem in the User's cart. For example, if
+						User 'Colin' has 5 'Apples' in his cart, then quantity will hold the
+						value 5.
+					</p>
+					<h3>Employees:</h3>
+					<p>
+						This relation holds the Users that are able to alter and update the
+						foodItems relation. Employees are idenitfied by their unique
+						username, which is a foreign key to the User relation.
+					</p>
 
-        <section>
-          <h2>Section I: Project Vision</h2>
-          <p>Grocery List</p>
-          <p>
-            Describe your project vision. Explain the problem you’re trying to
-            solve, and why you believe a database solution is necessary.
-          </p>
-          <br />
-          <h2>Section II: Product Features</h2>
-          <p>
-            As you can see in the examples above, it’s important to list the
-            type of user(s) involved in each feature, followed by a concise and
-            independent “unit of work.”
-          </p>
-          <br>
-          <ul>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-          </ul>
-          <br />
-          <h2>Section III: Database Schema</h2>
-          <p></p>
-          <p>
-            Design a relational database schema to support the set of features
-            you listed. There are lots of tools to draw schema diagrams. For
-            instance, check out draw.io. In your schema diagram, underline the
-            primary keys, and don’t forget to draw edges for your foreign keys.
-            For each relation, write a brief description of what it stores, and
-            why it’s needed.
-          </p>
-          <br />
-          <h2>Section IV: Project Management</h2>
-          <p>Tools Used:</p>
-          <ul>
-              <li>git</li>
-          </ul>
-          <br>
-          <p>Gantt Chart:</p>
-          <p></p>
-          <br />
-        </section>
-      </article>
+					<br />
+					<h2>Section IV: Project Management</h2>
+					<p>Tools Used:</p>
+					<ul>
+						<li>git</li>
+					</ul>
+					<br />
+					<p>Gantt Chart:</p>
+					<p></p>
+					<br />
+				</section>
+			</article>
 
-      <footer>
-        <p>Authored by: Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
-      </footer>
-    </div>
-  </body>
+			<footer>
+				<p>Authored by: Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
+			</footer>
+		</div>
+	</body>
 </html>
