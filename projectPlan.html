@@ -35,28 +35,12 @@
           <p>Emilee Oquist, Colin Monaghan, and Alysa Vermeulen.</p>
         </header>
 
-        <aside class="image-holder">
-          <img class="image" src="computer.png" />
-        </aside>
-
         <section>
           <h2>Section I: Project Vision</h2>
           <p>Grocery List</p>
           <p>
             Describe your project vision. Explain the problem you’re trying to
             solve, and why you believe a database solution is necessary.
-          </p>
-          <p>
-            Problem: Wanting to make sure everything on a person's grocery list
-            is available at the store<br />
-            Reason why it's important to us: Sometimes when you get to a store-
-            you realize that they don't have this one thing you're looking for.
-            Our interactive grocery list project will seek to resolve the issue
-            by checking the store's listed items<br />
-            Why DB needed: Food products will have many different attributes for
-            cataloguing purposes, and grocery list items need to be consistent
-            especially since it needs to check against the store's own database
-            of products being sold<br />
           </p>
           <br />
           <h2>Section II: Product Features</h2>
@@ -67,26 +51,114 @@
           </p>
           <br />
           <ul>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
-            <li>Feature:</li>
+            <li>
+              <b>Feature 1:</b> Users can login to our system with a username
+              and password. Users must also enter their email after creating an
+              account. This data is securely stored in our database. If they are
+              a new user, they can click the “New user” link and add a new
+              username, password, and email, which will add them to the grocery
+              list system. If the username is not available, the system will
+              prompt them to enter a unique one. If they are a returning user,
+              they can enter their username and password to login. Returning
+              users can check a “Remember me today” box that will save them from
+              having to input their login info again within a 24-hour period.
+              Otherwise, the system will only remember them for one hour.
+            </li>
+            <li>
+              <b>Feature 2:</b> Five unsuccessful login attempts will block the
+              user from the system, and the user must reset their password from
+              a link sent to their stored email. The “Forgot password” option
+              will also be available to users before the system blocks them
+              after too many failed login attempts.
+            </li>
+            <li>
+              <b>Feature 3:</b> Each user has a “Profile” page that lets them
+              change their username, password, or email.
+            </li>
+            <li>
+              <b>Feature 4:</b> A user can add to their grocery list from a list
+              of items sorted by category. This will include categories like
+              fruits, vegetables, canned goods, frozen foods, meat, snacks, and
+              beverages. The initial list shows all food items. The user can
+              narrow down their options by selecting one or more categories.
+            </li>
+            <li>
+              <b>Feature 5:</b> A user can also add to their grocery list by
+              searching the name of a food item in a search bar. If their search
+              query returns an item, they can add the item to their list. If
+              their search query does not return an item, the system will
+              display a message saying: “No food item found.”
+            </li>
+            <li>
+              <b>Feature 6:</b> When adding an item, the user can choose the
+              quantity of the item to add to their list.
+            </li>
+            <li>
+              <b>Feature 7:</b> A user can view their full grocery list. This
+              page shows the name of each item, the cost of each item, and the
+              quantity of each item. From this page, the user can remove an item
+              from their list, or they can increase or decrease the quantity of
+              an item already on their list.
+            </li>
+            <li>
+              <b>Feature 8:</b> The grocery list page displays the price of each
+              item on the list, and at the bottom of the page, it shows the
+              overall cost of the grocery list. These prices will update as the
+              user changes the quantity of a particular item or removes an item
+              from the list. If an item has a quantity greater than 1 assigned
+              to it, the displayed price is the combined price associated with
+              that quantity.
+            </li>
+            <li>
+              <b>Feature 9:</b> In addition to having the capabilities of a
+              normal user, an employee user has a menu option that lets them add
+              food items to the overall food item list, remove food items, and
+              change item prices.
+            </li>
           </ul>
           <br />
           <h2>Section III: Database Schema</h2>
-          <p></p>
-          <p>
-            Design a relational database schema to support the set of features
-            you listed. There are lots of tools to draw schema diagrams. For
-            instance, check out draw.io. In your schema diagram, underline the
-            primary keys, and don’t forget to draw edges for your foreign keys.
-            For each relation, write a brief description of what it stores, and
-            why it’s needed.
-          </p>
           <br />
+          <aside class="image-holder">
+            <img class="image" src="DatabaseSchema.svg" />
+          </aside>
+          <h3>User:</h3>
+          <p>
+            This relation stores the users of the app. Users are identified with
+            a unique username, a first name, a last name, and a password. A
+            User's username is a unique string that is the primary key for the
+            relation. When a User logs into the app, they enter their username
+            and password, which are verified with the username and password in
+            the database to authenticate their identity. Then, when the User is
+            perusing the app, their first and last name may be displayed on the
+            page, illustrating that they are logged in as themselves.
+          </p>
+          <h3>FoodItem:</h3>
+          <p>
+            This relation stores the FoodItems of the app. FoodItems are
+            identified with a unique foodID, a foodName, a price, and a
+            catagory. Every item in the grocery store is represented as a tuple
+            in the FoodItem relation. The foodID is a unique integer that is the
+            primary key of the relation. Each FoodItem has a name, a price, and
+            a catagory that is associated with it.
+          </p>
+          <h3>UserCart:</h3>
+          <p>
+            The UserCart relation holds the data of what foodItems each User has
+            in their cart. Each tuple is uniquely idenified by a userID and
+            foodID pair. The userID is a foreign key that points to a User's
+            username and the foodID is a foriegn key that points to a FoodItem's
+            foodID. The quantity attribute is an integer value that represents
+            the quantity of the FoodItem in the User's cart. For example, if
+            User 'Colin' has 5 'Apples' in his cart, then quantity will hold the
+            value 5.
+          </p>
+          <h3>Employees:</h3>
+          <p>
+            This relation holds the Users that are able to alter and update the
+            foodItems relation. Employees are idenitfied by their unique
+            username, which is a foreign key to the User relation.
+          </p>
           <h2>Section IV: Project Management</h2>
           <p>Tools Used:</p>
           <ul>
@@ -96,6 +168,9 @@
           <p>Gantt Chart:</p>
           <p></p>
           <br />
+          <iframe
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRN72Y1OsrFVLGR14uVKPZCIb1xZXlbJTUKQOkvW3su8VHbh4rokVcWoT5bPLhRmNBdYb52rWyRmr_0/pubhtml?gid=1077592229&amp;single=true&amp;widget=true&amp;headers=false"
+          ></iframe>
         </section>
       </article>
 
