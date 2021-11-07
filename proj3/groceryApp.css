@@ -160,6 +160,10 @@ footer {
 	transform: scale(1.5);
 }
 
-.checkboxAndName > p {
+.checkboxAndName > span {
 	padding: 0 5px;
+}
+
+.itemChecked {
+	text-decoration: line-through;
 }
