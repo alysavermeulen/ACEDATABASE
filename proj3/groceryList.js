@@ -61,7 +61,6 @@ function addItem(listID, item, price) {
 	//append the new list item to the end of the list (before the list total)
 	let ul = document.querySelector(listID);
 	let ListTotal = document.querySelector("#total");
-	console.log(ListTotal);
 	ul.insertBefore(newListItem, ListTotal);
 }
 
