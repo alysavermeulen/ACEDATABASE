@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  background-color: #d6e9fe;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  padding-left: 4px;
+}
+
+a:link,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: #5d6063;
+  text-decoration: underline;
+}
+
+.page {
+  height: 100%;
+}
+
+/* Menu */
+.menu-container {
+  color: #fff;
+  background-color: #5995da; /* Blue */
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 50px;
+}
+
+.menu {
+  margin-top: 15px;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.menu > li {
+  display: inline;
+  margin-right: 50px;
+}
+
+.menu > li:last-of-type {
+  margin-right: 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.dropdown > span {
+  z-index: 2;
+  position: relative; /* This is important! */
+  cursor: pointer;
+}
+
+/* Features Menu */
+.features-menu {
+  display: none;
+}
+
+.dropdown:hover .features-menu {
+  display: flex;
+  flex-direction: column;
+  background: #b2d6ff;
+  border-radius: 5px;
+  padding-top: 60px;
+
+  position: absolute;
+  top: -25px;
+  left: -30px;
+
+  z-index: 1;
+}
+
+.features-menu li {
+  list-style: none;
+  border-bottom: 1px solid #fff;
+
+  padding: 0 40px 10px 20px;
+  margin: 10px;
+}
+
+.features-menu li:last-of-type {
+  border-bottom: none;
+}
+
+/* Category Menu */
+.category-menu {
+  display: none;
+  position:  absolute;
+  background: #b2d6ff;
+  border-radius: 5px;
+  padding-top: 30px;
+  white-space:  nowrap;
+  top: -10px;
+  left: -15px;
+  z-index: 1;
+}
+
+.dropdown:hover .category-menu {
+  display: block;
+}
+
+.category-menu li {
+  list-style: none;
+  border-bottom: 1px solid #fff;
+
+  padding: 0 10px 5px 10px;
+  margin: 10px;
+}
+
+.category-menu li:last-of-type {
+  border-bottom: none;
+}
+
+/* Image */
+.image_holder {
+  display: inline;
+}
+
+.image {
+  float: right;
+  height: max-content;
+  width: max-content;
+  margin: 2%;
+}
+
+/* Body */
+
+.content {
+  display: block;
+  margin: 5%;
+}
+
+.title {
+  display: block;
+  margin-left: 10%;
+  padding-left: 5%;
+  padding-bottom: 10px;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.bulleted_answer {
+  padding-left: 2%;
+}
+
+/* insertPassengerForm */
+.insertPassengerForm {
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.insertPassengerForm > label {
+  display: block;
+}
+.insertPassengerForm > input[type="text"] {
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.insertPassengerForm > input[type="submit"] {
+  background-color: #5995da;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* showPassengers */
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-align:  center;
+  background-color:  white;
+}
+
+/* groceryForm */
+.groceryForm {
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.groceryForm > label {
+  display: block;
+}
+.groceryForm > input[type="text"] {
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.groceryForm > input[type="submit"] {
+  background-color: #5995da;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
