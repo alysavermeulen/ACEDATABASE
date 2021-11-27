@@ -1,16 +1,3 @@
-// add an event for keypress
-let inputNode = document.querySelector("input[name='addItem']");
-inputNode.addEventListener("keydown", function (evt) {
-	// need to check if the return key was pressed
-	if (evt.code === "Enter" && inputNode.value != "") {
-		// get the value from the input field
-		addItem("#groceryList", inputNode.value, 1.0);
-
-		// clear out field
-		inputNode.value = "";
-	}
-});
-
 /**
  * Adds an item to the list
  * @param {string} listID HTML id of the list
@@ -80,7 +67,3 @@ function updateListTotal(delta) {
 	newTotal = newTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 	total.innerHTML = `$${newTotal}`;
 }
-
-addItem("#groceryList", "Milk", 1.0);
-addItem("#groceryList", "Eggs", 1.0);
-addItem("#groceryList", "Bread", 1.0);
