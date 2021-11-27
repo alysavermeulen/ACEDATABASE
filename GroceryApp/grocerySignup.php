@@ -8,19 +8,9 @@
 	<body>
 		<div class="page">
 			<header class="menu-container">
-				<h1 class="logo">455: Database Systems</h1>
-				<nav class="menu">
-					<li class="dropdown">
-						<span>Pages &#9662;</span>
-						<ul class="features-menu">
-							<!-- Start of submenu -->
-							<li><a href="index.html">Home</a></li>
-							<li><a href="passengerIndex.html">Airplane Passengers</a></li>
-						</ul>
-						<!-- End of submenu -->
-					</li>
-					<li><a href="index.html">Home</a></li>
-				</nav>
+				<h1 class="logo">
+					<a class="logo-link" href="./index.html">Grocery App</a>
+				</h1>
 			</header>
 
 			<!--Title and Form-->
