@@ -290,6 +290,12 @@ th {
 	transform: scale(1.5);
 }
 
+.checkboxAndName > input[type="number"] {
+	width: 50px;
+	padding-left: 4px;
+	margin-left: 10px;
+}
+
 .checkboxAndName > span {
 	padding: 0 5px;
 }

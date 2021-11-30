@@ -54,8 +54,7 @@
 								foreach($result_set as $tuple){
 									//addItem("#groceryList", inputNode.value, 1.0);
 									echo '<script type="text/javascript"> 
-									console.log("'.$tuple['foodName'].'");
-									addItem("#groceryList","'.$tuple['foodName'].'", '.$tuple['price'].'); 
+									addItem("'.$tuple['foodName'].'", '.$tuple['price'].', '.$tuple['quantity'].'); 
 									</script>';
 								}
 

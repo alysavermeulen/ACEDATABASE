@@ -1,13 +1,11 @@
 /**
  * Adds an item to the list
- * @param {string} listID HTML id of the list
  * @param {string} item Name of the grocery list item to be added
  * @param {number} price Price of the grocery list item to be added
+ * @param {number} quantity Quantity of the grocery list item
  */
-function addItem(listID, item, price) {
-	if (!listID.startsWith("#")) {
-		listID = "#" + listID;
-	}
+function addItem(item, price, quantity) {
+	var listID = document.querySelector("#groceryList");
 
 	// create a <span>item name</span>
 	let itemName = document.createElement("span");
@@ -25,15 +23,26 @@ function addItem(listID, item, price) {
 	//<input type="checkbox"/>
 	let checkbox = document.createElement("input");
 	checkbox.setAttribute("type", "checkbox");
+
+	// create the quantity input
+	//<input type="number" name = "quantity" value="1" min="0" style="width: 4em"></input>
+	let quantityField = document.createElement("input");
+	quantityField.setAttribute("type", "number");
+	quantityField.setAttribute("name", "quantity");
+	quantityField.setAttribute("min", 0);
+	quantityField.setAttribute("value", quantity);
+
+	//add event listeners for the checkbox and the number field
 	checkbox.addEventListener("change", () => {
-		if (checkbox.nextSibling.classList.contains("itemChecked")) {
-			itemName.classList.remove("itemChecked");
-			itemPrice.classList.remove("itemChecked");
-			updateListTotal(price);
+		checkBox(checkbox, quantityField, itemName, itemPrice);
+	});
+	quantityField.addEventListener("change", () => {
+		if (quantityField.value == 0) {
+			checkbox.checked = true;
+			checkBox(checkbox, quantityField, itemName, itemPrice);
 		} else {
-			itemName.classList.add("itemChecked");
-			itemPrice.classList.add("itemChecked");
-			updateListTotal(-price);
+			checkbox.checked = false;
+			checkBox(checkbox, quantityField, itemName, itemPrice);
 		}
 	});
 
@@ -41,6 +50,7 @@ function addItem(listID, item, price) {
 	let div = document.createElement("div");
 	div.setAttribute("class", "checkboxAndName");
 	div.appendChild(checkbox);
+	div.appendChild(quantityField);
 	div.appendChild(itemName);
 
 	// nest the contents inside the list item
@@ -51,19 +61,44 @@ function addItem(listID, item, price) {
 	newListItem.appendChild(itemPrice);
 
 	//append the new list item to the end of the list (before the list total)
-	let ul = document.querySelector(listID);
 	let ListTotal = document.querySelector("#total");
-	ul.insertBefore(newListItem, ListTotal);
+	listID.insertBefore(newListItem, ListTotal);
 
 	//update the total sum of the list
-	updateListTotal(price);
+	recalculateListTotal();
 }
 
-function updateListTotal(delta) {
-	let total = document.querySelector("#totalPrice");
-	//update the value of the new total
-	newTotal = parseFloat(total.innerHTML.substring(1)) + delta;
+function checkBox(checkbox, quantityField, itemName, itemPrice) {
+	if (!checkbox.checked) {
+		itemName.classList.remove("itemChecked");
+		itemPrice.classList.remove("itemChecked");
+		if (quantityField.value == 0) quantityField.value = 1;
+	} else {
+		itemName.classList.add("itemChecked");
+		itemPrice.classList.add("itemChecked");
+		quantityField.value = 0;
+	}
+	updateRowTotal(checkbox, quantityField, itemName, itemPrice);
+}
+
+function updateRowTotal(checkbox, quantityField, itemName, itemPrice) {
+	recalculateListTotal();
+}
+
+function recalculateListTotal() {
+	//set the value of newTotal to 0
+	var newTotal = 0;
+	var listID = document.querySelector("#groceryList");
+
+	//go through the list and add the value of each item to the total
+	for (let child of listID.children) {
+		if (child.id != "total") {
+			let string = child.lastChild.innerHTML.substring(1);
+			newTotal += Number(string);
+		}
+	}
+
 	//reformat the new total
 	newTotal = newTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-	total.innerHTML = `$${newTotal}`;
+	document.querySelector("#totalPrice").innerHTML = `$${newTotal}`;
 }
