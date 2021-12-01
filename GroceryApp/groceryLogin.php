@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,9 +12,19 @@
 	<body>
 		<div class="page">
 			<header class="menu-container">
-				<h1 class="logo">
-					<a class="logo-link" href="./index.html">Grocery App</a>
-				</h1>
+				<h1 class="logo">455: Database Systems</h1>
+				<nav class="menu">
+					<li class="dropdown">
+						<span>Pages &#9662;</span>
+						<ul class="features-menu">
+							<!-- Start of submenu -->
+							<li><a href="index.html">Home</a></li>
+							<li><a href="passengerIndex.html">Airplane Passengers</a></li>
+						</ul>
+						<!-- End of submenu -->
+					</li>
+					<li><a href="index.html">Home</a></li>
+				</nav>
 			</header>
 
 			<!--Title and Form-->
@@ -23,28 +37,35 @@
 				<form
 					class="groceryForm"
 					method="post"
-					action="groceryList.php"
+					action="userAuthentication.php"
 				>
 					<!-- username, password-->
-					<label for="f_name">Username</label>
+					<label for="username">Username</label>
 					<input
 						class="textInput"
 						type="text"
-						id="fname"
-						name="f_name"
+						name="username"
 						pattern="[A-Za-z]{1,}"
 						required
 					/>
 
-					<label for="m_name">Password</label>
+					<label for="password">Password</label>
 					<input
 						class="textInput"
 						type="text"
-						id="mname"
-						name="m_name"
-						pattern="[A-Za-z]{1}"
+						name="password"
+						pattern="[A-Za-z0-9]{1,}"
 					/>
+
 					<input type="submit" value="Login" />
+
+					<?php
+						if(isset($_SESSION['error'])){
+							$error = $_SESSION['error'];
+							echo "<br><span>$error</span>";
+						}
+					?>
+
 				</form>
 				<div class="groceryForm">
                 <a href="grocerySignup.php" style="color: #0b6fa6">Sign up as new user.</a>
@@ -53,3 +74,7 @@
 		</div>
 	</body>
 </html>
+
+<?php
+	unset($_SESSION['error']);
+?>

@@ -1,37 +1,76 @@
+<?php
+session_start();
+?>
+
+<?php
+
+if($_SESSION['userType'] != "Admin"){
+    header("Location: showStore.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Show Grocery Items</title>
+    <title>Edit Grocery Item</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div class="page">
-    <header class="menu-container">
-				<h1 class="logo">
-					<a class="logo-link" href="./index.html">Grocery App</a>
-				</h1>
-				<nav class="menu">
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
-				</nav>
-			</header>
+        <header class="menu-container">
+            <h1 class="logo">455: Database Systems</h1>
+            <nav class="menu">
+                <?php
+
+                if($_SESSION['userType'] == "Admin"){
+                    echo '<li><a href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
+                }
+
+                ?>
+                <li class="dropdown">
+                    <span>Pages &#9662;</span>
+                    <ul class="features-menu">
+                        <!-- Start of submenu -->
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="passengerIndex.html">Airplane Passengers</a></li>
+                    </ul>
+                    <!-- End of submenu -->
+                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="signOut.php">Sign Out</a></li>
+            </nav>
+        </header>
         <article class="content">
 
         <!--Title-->
             <header>
-                <h2>Grocery Items</h2>
+                <h2>Select Grocery Item to Edit</h2>
             </header>
+
+             <?php
+                if(isset($_SESSION['error'])){
+                    $error = $_SESSION['error'];
+                    echo "<br><span><b>$error</b></span><br>";
+                }
+
+                if(isset($_SESSION['success'])){
+                    $success = $_SESSION['success'];
+                    echo "<br><span><b>$success</b></span><br>";
+                }
+            ?>
 
             <!-- Show All Food Items -->
             <br>
             <div>
-                <a href="showGroceryItems.php" style="color: #0b6fa6">Show all food items</a>
+                <a href="editItemSearch.php" style="color: #0b6fa6">Show all food items</a>
             </div>
 
             <!-- Search Bar -->
             <br>
             <div>
-                <form action="showGroceryItems.php" method="get">
+                <form action="editItemSearch.php" method="get">
                     <label for="s">Search all food items:</label>
                     <input type="search" name="s" required>
                     <input type="submit" value=" Submit " />
@@ -44,7 +83,7 @@
                     <span>Category Selection &#9662;</span>
                     <div class="category-menu">
                         <!-- Start of submenu -->
-                        <form action="showGroceryItems.php" method="post">
+                        <form action="editItemSearch.php" method="post">
                           <li><input type="checkbox" name="categories[]" value="Beverages" /> Beverages</li>
                           <li><input type="checkbox" name="categories[]" value="Cookies, Snacks, and Candy" /> Cookies, Snacks, and Candy</li>
                           <li><input type="checkbox" name="categories[]" value="Frozen Foods" /> Frozen Foods</li>
@@ -52,6 +91,7 @@
                           <li><input type="checkbox" name="categories[]" value="Vegetables" /> Vegetables</li>
                           <li><input type="checkbox" name="categories[]" value="Grains and Pasta" /> Grains and Pasta</li>
                           <li><input type="checkbox" name="categories[]" value="Meat and Seafood" /> Meat and Seafood</li>
+                          <li><input type="checkbox" name="categories[]" value="Dairy" /> Dairy</li>
                           <li><input type="submit" value=" Submit " /></li>
                         </form>
                     </div>
@@ -90,7 +130,6 @@
                                         <th>Food Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
-                                        <th>Quantity</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
@@ -99,10 +138,7 @@
                                             <td>'.$tuple['foodName'].'</td>
                                             <td>'.$tuple['price'].'</td>
                                             <td>'.$tuple['category'].'</td>
-                                            <form action="addGroceryItem.php?foodID='.$tuple['foodID'].'" method="post">
-                                            <td><input type="number" name = "quantity" value="1" min="1" style="width: 4em"></td>
-                                            <td><input type="submit" value=" Add to grocery list "></td>
-                                            </form>
+                                            <td><a href="editItemPage.php?foodID='.$tuple['foodID'].'" style="color: #0b6fa6">Edit item</a></td>
                                         </tr>';
                                 }
                                 echo '</tbody>
@@ -127,7 +163,6 @@
                                         <th>Food Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
-                                        <th>Quantity</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
@@ -143,10 +178,7 @@
                                                 <td>'.$tuple['foodName'].'</td>
                                                 <td>'.$tuple['price'].'</td>
                                                 <td>'.$tuple['category'].'</td>
-                                                <form action="addGroceryItem.php?foodID='.$tuple['foodID'].'" method="post">
-                                                <td><input type="number" name = "quantity" value="1" min="1" style="width: 4em"></td>
-                                                <td><input type="submit" value=" Add to grocery list "></td>
-                                                </form>
+                                                <td><a href="editItemPage.php?foodID='.$tuple['foodID'].'" style="color: #0b6fa6">Edit item</a></td>
                                             </tr>';
                                     }
                                 }
@@ -167,7 +199,6 @@
                                         <th>Food Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
-                                        <th>Quantity</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
@@ -176,14 +207,12 @@
                                         <td>'.$tuple['foodName'].'</td>
                                         <td>'.$tuple['price'].'</td>
                                         <td>'.$tuple['category'].'</td>
-                                        <form action="addGroceryItem.php?foodID='.$tuple['foodID'].'" method="post">
-                                        <td><input type="number" name = "quantity" value="1" min="1" style="width: 4em"></td>
-                                        <td><input type="submit" value=" Add to grocery list "></td>
-                                        </form>
+                                        <td><a href="editItemPage.php?foodID='.$tuple['foodID'].'" style="color: #0b6fa6">Edit item</a></td>
                                     </tr>';
                             }
                             echo '</tbody>
                                 </table>';
+
                         }
                         //disconnect from db
                             $db = null;
@@ -198,3 +227,8 @@
     </div>
 </body>
 </html>
+
+<?php
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
+?>

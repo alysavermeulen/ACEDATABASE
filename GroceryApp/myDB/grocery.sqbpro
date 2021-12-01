@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Apache24/htdocs/myDB/grocery.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="200"/><column_width id="3" width="4234"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainCategory"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Category" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="300"/><column index="2" value="300"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="User" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="150"/><column index="2" value="144"/><column index="3" value="300"/><column index="4" value="150"/><column index="5" value="147"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1"></sql><current_tab id="0"/></tab_sql></sqlb_project>
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Apache24/htdocs/myDB/grocery.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="200"/><column_width id="3" width="4234"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainCategory"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">BEGIN TRANSACTION;
+INSERT INTO User VALUES ('Alysa', 'Vermeulen', 'avermeulen', '123', 'User');
+INSERT INTO User VALUES ('Colin', 'Monaghan', 'cmonaghan', '456', 'Admin');
+INSERT INTO User VALUES ('Emilee', 'Oquist', 'eoquist', '789', 'User');
+INSERT INTO Category VALUES ('Fruits', 'Fresh fruits, such as apples, bananas, and blueberries.');
+INSERT INTO Category VALUES ('Vegetables', 'Healthy vegetables, such as broccoli, carrots, and tomatoes.');
+INSERT INTO Category VALUES ('Frozen Foods', 'Frozen Foods, such as ice cream and frozen pizza.');
+INSERT INTO Category VALUES ('Cookies, Snacks, and Candy', 'Delicious goods for snacking, such as chocolate chip cookies and pretzels.');
+INSERT INTO Category VALUES ('Beverages', 'Tasty drinks, such as apple juice, tea, and soft drinks.');
+INSERT INTO Category VALUES ('Grains and Pasta', 'Grains and pasta, such as rice, pasta, and quinoa.');
+INSERT INTO Category VALUES ('Meat and Seafood', 'Various meat and seafood items, including steak and salmon.');
+INSERT INTO Category VALUES ('Dairy', 'Dairy Items');
+INSERT INTO FoodItem VALUES (1, 'Apple', 1.00, 'Fruits');
+INSERT INTO FoodItem VALUES (2, 'Lettuce', 0.50, 'Vegetables');
+INSERT INTO FoodItem VALUES (3, 'Ice Cream', 5.00, 'Frozen Foods');
+INSERT INTO FoodItem VALUES (4, 'Salmon', 20.00, 'Meat and Seafood');
+INSERT INTO FoodItem VALUES (5, 'Pretzels', 5.00, 'Cookies, Snacks, and Candy');
+INSERT INTO FoodItem VALUES (6, 'Orange Juice', 2.00, 'Beverages');
+INSERT INTO FoodItem VALUES (7, 'Banana', 3.00, 'Fruits');
+INSERT INTO FoodItem VALUES (8, 'Asparagus', 3.00, 'Vegetables');
+INSERT INTO FoodItem VALUES (9, 'Pasta', 12.00, 'Grains and Pasta');
+INSERT INTO FoodItem VALUES (10, 'Steak', 32.00, 'Meat and Seafood');
+INSERT INTO FoodItem VALUES (11, 'Apple Juice', 4.00, 'Beverages');
+INSERT INTO FoodItem VALUES (12, 'Cheese', 4.00, 'Dairy');
+COMMIT;</sql><current_tab id="0"/></tab_sql></sqlb_project>
