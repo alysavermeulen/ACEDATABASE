@@ -284,6 +284,7 @@ th {
 .checkboxAndName {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .checkboxAndName > input[type="checkbox"] {
@@ -298,6 +299,14 @@ th {
 
 .checkboxAndName > span {
 	padding: 0 5px;
+}
+
+.prices-div {
+	display: flex;
+	justify-content: space-between;
+}
+.prices-div > span {
+	padding-right: 10px;
 }
 
 .itemChecked {
