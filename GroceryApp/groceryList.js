@@ -19,6 +19,15 @@ function addItem(item, price, quantity) {
 	let displayPrice = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 	itemPrice.innerHTML = `$${displayPrice}`;
 
+	// create a <span>total price</span>
+	let totalPrice = document.createElement("span");
+	totalPrice.setAttribute("id", "itemPrice");
+	//format the price of the item
+	let displayTotal = (price * quantity)
+		.toFixed(2)
+		.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+	totalPrice.innerHTML = `$${displayTotal}`;
+
 	//create a checkbox <input>
 	//<input type="checkbox"/>
 	let checkbox = document.createElement("input");
@@ -34,31 +43,37 @@ function addItem(item, price, quantity) {
 
 	//add event listeners for the checkbox and the number field
 	checkbox.addEventListener("change", () => {
-		checkBox(checkbox, quantityField, itemName, itemPrice);
+		checkBox(checkbox, quantityField, itemName, itemPrice, totalPrice);
 	});
 	quantityField.addEventListener("change", () => {
 		if (quantityField.value == 0) {
 			checkbox.checked = true;
-			checkBox(checkbox, quantityField, itemName, itemPrice);
+			checkBox(checkbox, quantityField, itemName, itemPrice, totalPrice);
 		} else {
 			checkbox.checked = false;
-			checkBox(checkbox, quantityField, itemName, itemPrice);
+			checkBox(checkbox, quantityField, itemName, itemPrice, totalPrice);
 		}
 	});
 
-	// nest the contents inside the list item
-	let div = document.createElement("div");
-	div.setAttribute("class", "checkboxAndName");
-	div.appendChild(checkbox);
-	div.appendChild(quantityField);
-	div.appendChild(itemName);
+	// nest the contents inside the left div
+	let left_div = document.createElement("div");
+	left_div.setAttribute("class", "checkboxAndName");
+	left_div.appendChild(checkbox);
+	left_div.appendChild(quantityField);
+	left_div.appendChild(itemName);
+
+	// nest the contents inside the right div
+	let right_div = document.createElement("div");
+	right_div.setAttribute("class", "prices-div");
+	right_div.appendChild(itemPrice);
+	right_div.appendChild(totalPrice);
 
 	// nest the contents inside the list item
 	let newListItem = document.createElement("li");
 	newListItem.setAttribute("class", "list-item");
 	newListItem.setAttribute("id", "item");
-	newListItem.appendChild(div);
-	newListItem.appendChild(itemPrice);
+	newListItem.appendChild(left_div);
+	newListItem.appendChild(right_div);
 
 	//append the new list item to the end of the list (before the list total)
 	let ListTotal = document.querySelector("#total");
@@ -68,20 +83,29 @@ function addItem(item, price, quantity) {
 	recalculateListTotal();
 }
 
-function checkBox(checkbox, quantityField, itemName, itemPrice) {
+function checkBox(checkbox, quantityField, itemName, itemPrice, totalPrice) {
 	if (!checkbox.checked) {
 		itemName.classList.remove("itemChecked");
 		itemPrice.classList.remove("itemChecked");
+		totalPrice.classList.remove("itemChecked");
 		if (quantityField.value == 0) quantityField.value = 1;
 	} else {
 		itemName.classList.add("itemChecked");
 		itemPrice.classList.add("itemChecked");
+		totalPrice.classList.add("itemChecked");
 		quantityField.value = 0;
 	}
-	updateRowTotal(checkbox, quantityField, itemName, itemPrice);
+	updateRowTotal(quantityField, itemPrice, totalPrice);
 }
 
-function updateRowTotal(checkbox, quantityField, itemName, itemPrice) {
+function updateRowTotal(quantityField, itemPrice, totalPrice) {
+	console.log("Changing");
+	let price = Number(itemPrice.innerHTML.substring(1));
+	let quantity = Number(quantityField.value);
+	let newTotal = (price * quantity)
+		.toFixed(2)
+		.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+	totalPrice.innerHTML = `$${newTotal}`;
 	recalculateListTotal();
 }
 
@@ -93,8 +117,8 @@ function recalculateListTotal() {
 	//go through the list and add the value of each item to the total
 	for (let child of listID.children) {
 		if (child.id != "total") {
-			let string = child.lastChild.innerHTML.substring(1);
-			newTotal += Number(string);
+			let price = Number(child.lastChild.lastChild.innerHTML.substring(1));
+			newTotal += price;
 		}
 	}
 
