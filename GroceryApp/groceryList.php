@@ -51,7 +51,7 @@ session_start();
 						$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						if (!isset($_GET['s'])){
                             //retrieve food items from all categories
-							$username = 'cmonaghan';
+							$username = $_SESSION['username'];
                             $qry = "select * from UserCart natural join foodItem where username is '".$username."';";
                             $result_set = $db->query($qry);
 
@@ -79,6 +79,10 @@ session_start();
 						die('Exception : '.$e->getMessage());
 					}
 					?>
+
+				<form action="updateList.php" method="post">
+                    <input type="submit" value=" Checkout " />
+                </form>
 
 			</div>
 		</div>
