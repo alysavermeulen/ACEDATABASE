@@ -12,28 +12,19 @@ session_start();
 <body>
     <div class="page">
         <header class="menu-container">
-            <h1 class="logo">455: Database Systems</h1>
-            <nav class="menu">
-                <?php
-
-                if($_SESSION['userType'] == "Admin"){
-                    echo '<li><a href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
-                }
-
-                ?>
-                <li class="dropdown">
-                    <span>Pages &#9662;</span>
-                    <ul class="features-menu">
-                        <!-- Start of submenu -->
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="passengerIndex.html">Airplane Passengers</a></li>
-                    </ul>
-                    <!-- End of submenu -->
-                </li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signOut.php">Sign Out</a></li>
-            </nav>
-        </header>
+				<h1 class="logo">
+					<a class="logo-link" href="./index.html">Grocery App</a>
+				</h1>
+				<nav class="menu">
+					<?php
+						if($_SESSION['userType'] == "Admin"){
+							echo '<li><a class="nav-link" href="./editAvailableItems.php">Edit Available Grocery Items</a></li>';
+						}
+					?>
+					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
+					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+				</nav>
+		</header>
         <article class="content">
 
         <!--Title-->
@@ -44,13 +35,13 @@ session_start();
             <!-- Show All Food Items -->
             <br>
             <div>
-                <a href="showGroceryItems.php" style="color: #0b6fa6">Show all food items</a>
+                <a href="showStore.php" style="color: #0b6fa6">Show all food items</a>
             </div>
 
             <!-- Search Bar -->
             <br>
             <div>
-                <form action="showGroceryItems.php" method="get">
+                <form action="showStore.php" method="get">
                     <label for="s">Search all food items:</label>
                     <input type="search" name="s" required>
                     <input type="submit" value=" Submit " />
@@ -63,7 +54,7 @@ session_start();
                     <span>Category Selection &#9662;</span>
                     <div class="category-menu">
                         <!-- Start of submenu -->
-                        <form action="showGroceryItems.php" method="post">
+                        <form action="showStore.php" method="post">
                           <li><input type="checkbox" name="categories[]" value="Beverages" /> Beverages</li>
                           <li><input type="checkbox" name="categories[]" value="Cookies, Snacks, and Candy" /> Cookies, Snacks, and Candy</li>
                           <li><input type="checkbox" name="categories[]" value="Frozen Foods" /> Frozen Foods</li>

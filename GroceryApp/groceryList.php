@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,6 +17,12 @@
 					<a class="logo-link" href="./index.html">Grocery App</a>
 				</h1>
 				<nav class="menu">
+					<?php
+						if($_SESSION['userType'] == "Admin"){
+							echo '<li><a class="nav-link" href="./editAvailableItems.php">Edit Available Grocery Items</a></li>';
+						}
+					?>
+					<li><a class="nav-link" href="./showStore.php">Add Item to Cart</a></li>
 					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
 				</nav>
 			</header>
@@ -71,9 +81,6 @@
 					?>
 
 			</div>
-			<footer>
-				<p>Authored by: Colin Monaghan and Alysa Vermeulen.</p>
-			</footer>
 		</div>
 	</body>
 </html>
