@@ -35,7 +35,7 @@ session_start();
 			header("Location: grocerySignUp.php");
 		}
 
-		// if user with this username does not exist already
+		// if username is available
 		else{
 	        // prepare to insert new user info 
 	        $qry = $db->prepare('INSERT INTO user (firstName, lastName, username, password, userType) VALUES (?, ?, ?, ?, ?)');

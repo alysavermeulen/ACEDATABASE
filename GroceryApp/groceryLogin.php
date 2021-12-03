@@ -24,6 +24,7 @@ session_start();
 						<!-- End of submenu -->
 					</li>
 					<li><a href="index.html">Home</a></li>
+					<li><a href="signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
 
@@ -55,6 +56,7 @@ session_start();
 						type="text"
 						name="password"
 						pattern="[A-Za-z0-9]{1,}"
+						required
 					/>
 
 					<input type="submit" value="Login" />

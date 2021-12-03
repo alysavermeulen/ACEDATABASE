@@ -38,6 +38,7 @@ if($_SESSION['userType'] != "Admin"){
                     <!-- End of submenu -->
                 </li>
                 <li><a href='index.html'>Home</a></li>
+                <li><a href="signOut.php">Sign Out</a></li>
             </nav>
         </header>
 

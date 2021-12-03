@@ -31,6 +31,7 @@ session_start();
                     <!-- End of submenu -->
                 </li>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="editProfilePage.php">Edit Profile</a></li>
                 <li><a href="signOut.php">Sign Out</a></li>
             </nav>
         </header>
