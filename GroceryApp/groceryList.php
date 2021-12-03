@@ -28,14 +28,17 @@ session_start();
 			</header>
 
 			<div>
-				<ul id="groceryList">
-					<li class="list-item" id="total">
-						<div class="checkboxAndName">
-							<span></span>
-						</div>
-						<p id="totalPrice">$0.00</p>
-					</li>
-				</ul>
+				<form action="updateList.php" method="post">
+					<ul id="groceryList">
+						<li class="list-item" id="total">
+							<div class="checkboxAndName">
+								<span></span>
+							</div>
+							<p id="totalPrice">$0.00</p>
+						</li>
+					</ul>
+					<input class="submit-button" type="submit" value=" Checkout " />
+                </form>
 				
 				<script src="groceryList.js"></script>
 				<?php
@@ -80,9 +83,6 @@ session_start();
 					}
 					?>
 
-				<form action="updateList.php" method="post">
-                    <input type="submit" value=" Checkout " />
-                </form>
 
 			</div>
 		</div>

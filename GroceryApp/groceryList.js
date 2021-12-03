@@ -37,7 +37,7 @@ function addItem(item, price, quantity) {
 	//<input type="number" name = "quantity" value="1" min="0" style="width: 4em"></input>
 	let quantityField = document.createElement("input");
 	quantityField.setAttribute("type", "number");
-	quantityField.setAttribute("name", "quantity");
+	quantityField.setAttribute("name", item);
 	quantityField.setAttribute("min", 0);
 	quantityField.setAttribute("value", quantity);
 
