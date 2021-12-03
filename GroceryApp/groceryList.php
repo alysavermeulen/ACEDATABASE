@@ -37,7 +37,7 @@ session_start();
 							<p id="totalPrice">$0.00</p>
 						</li>
 					</ul>
-					<input class="submit-button" type="submit" value=" Checkout " />
+					<input class="submit-button" type="submit" value=" Update " />
                 </form>
 				
 				<script src="groceryList.js"></script>
