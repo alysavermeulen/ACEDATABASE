@@ -284,16 +284,42 @@ th {
 .checkboxAndName {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .checkboxAndName > input[type="checkbox"] {
 	transform: scale(1.5);
 }
 
+.checkboxAndName > input[type="number"] {
+	width: 50px;
+	padding-left: 4px;
+	margin-left: 10px;
+}
+
 .checkboxAndName > span {
 	padding: 0 5px;
 }
 
+.prices-div {
+	display: flex;
+	justify-content: space-between;
+}
+.prices-div > span {
+	padding-right: 10px;
+}
+
 .itemChecked {
 	text-decoration: line-through;
+}
+
+.submit-button {
+	background-color: var(--header-color);
+	color: var(--header-font);
+	padding: 12px 20px;
+	margin-right: 10%;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
 }

@@ -7,7 +7,7 @@ session_start();
 <body>
 <?php
     
-    $addSuccess = "Item successfully added! <a href='showGroceryItems.php' style='color: #0b6fa6'>See updated list of available foods?</a></span>";
+    $addSuccess = "Item successfully added! <a href='showStore.php' style='color: #0b6fa6'>See updated list of available foods?</a></span>";
 
     // path to the SQLite database file
     $db_file = './myDB/grocery.db';

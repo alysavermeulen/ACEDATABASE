@@ -20,28 +20,20 @@ if($_SESSION['userType'] != "Admin"){
 <body>
     <div class="page">
         <header class="menu-container">
-            <h1 class="logo">455: Database Systems</h1>
-            <nav class="menu">
-                <?php
-
-                if($_SESSION['userType'] == "Admin"){
-                    echo '<li><a href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
-                }
-
-                ?>
-                <li class="dropdown">
-                    <span>Pages &#9662;</span>
-                    <ul class="features-menu">
-                        <!-- Start of submenu -->
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="passengerIndex.html">Airplane Passengers</a></li>
-                    </ul>
-                    <!-- End of submenu -->
-                </li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signOut.php">Sign Out</a></li>
-            </nav>
-        </header>
+				<h1 class="logo">
+					<a class="logo-link" href="./index.html">Grocery App</a>
+				</h1>
+				<nav class="menu">
+					<?php
+						if($_SESSION['userType'] == "Admin"){
+							echo '<li><a class="nav-link" href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
+						}
+					?>
+					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
+					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+				</nav>
+		</header>
+        
         <article class="content">
 
         <!--Title-->
