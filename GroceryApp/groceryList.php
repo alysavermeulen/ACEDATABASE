@@ -33,8 +33,8 @@
 				</nav>
 			</header>
 
-			<div>
-				<form action="updateList.php" method="post">
+			<div class="groceryListContainer">
+				<form action="updateList.php" class="tableContainer" method="post">
 					<table id="groceryList">
                         <thead>
                             <tr>

@@ -14,6 +14,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 body {
@@ -35,7 +36,7 @@ footer {
 /* Menu */
 .menu-container {
 	color: var(--header-font);
-	background-color: var(--header-color); /* Blue */
+	background-color: var(--header-color);
 	padding: 20px 0;
 	display: flex;
 	justify-content: space-between;
@@ -68,25 +69,39 @@ footer {
 
 .dropdown > span {
 	z-index: 2;
-	position: relative; /* This is important! */
+	position: relative;
 	cursor: pointer;
 }
 
 .nav-link:link,
 .nav-link:visited {
+	background-color: var(--header-color);
+	color: var(--header-font);
+	padding: 12px 20px;
+
+	transition-duration: 0.4s;
+	box-shadow: none;
+
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	align-self: flex-end;
+
 	font-size: 14pt;
-	color: var(--body-font);
 	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .nav-link:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19);
 	color: var(--background-color);
-	text-decoration: underline;
 }
 
 .logo-link:link,
 .logo-link:visited {
 	color: var(--body-font);
 	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .logo-link:hover {
 	color: var(--background-color);
@@ -154,17 +169,7 @@ footer {
 	border-bottom: none;
 }
 
-/* Image */
-.image_holder {
-	display: inline;
-}
-
-.image {
-	float: right;
-	height: max-content;
-	width: max-content;
-	margin: 2%;
-}
+/* -------------------------------------------- */
 
 /* Body */
 
@@ -178,61 +183,6 @@ footer {
 	margin-left: 10%;
 	padding-left: 5%;
 	padding-bottom: 10px;
-}
-
-.question {
-	font-weight: bold;
-}
-
-.bulleted_answer {
-	padding-left: 2%;
-}
-
-/* insertPassengerForm 
-.insertPassengerForm {
-	margin: 20px 0;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 60%;
-}
-.insertPassengerForm > label {
-	display: block;
-}
-.insertPassengerForm > input[type="text"] {
-	width: 75%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-.insertPassengerForm > input[type="submit"] {
-	background-color: var(--header-color);
-	color: var(--header-font);
-	padding: 12px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	float: right;
-}
-
-*/
-
-/* showPassengers */
-
-table {
-	border-collapse: collapse;
-}
-
-td,
-th {
-	border: 1px solid black;
-	padding: 10px 20px;
-	font-size: 14px;
-	text-align: center;
-	background-color: var(--header-font);
 }
 
 /* groceryForm */
@@ -265,7 +215,79 @@ th {
 	float: right;
 }
 
-/* Grocery List */
+/* Table Formatting */
+
+table {
+	border-collapse: collapse;
+	padding: 20px 0;
+	padding-left: 10%;
+	font-size: 14pt;
+}
+th {
+	border-bottom: 1px solid black;
+	padding: 10px 20px;
+	font-size: 14px;
+	text-align: center;
+	color: var(--header-font);
+	background-color: var(--header-color);
+}
+td {
+	padding: 10px 20px;
+	font-size: 14px;
+	text-align: center;
+}
+
+td > input[type="checkbox"] {
+	transform: scale(1.5);
+}
+
+td > input[type="number"] {
+	width: 50px;
+}
+
+td > input[type="submit"] {
+	background-color: var(--header-color);
+	color: var(--header-font);
+	padding: 6px 10px;
+
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+}
+
+td > input[type="submit"]:hover {
+	background-color: var(--header-dropdown-background);
+}
+
+/* Grocery List and Show Store*/
+
+.showStoreContainer,
+.groceryListContainer {
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-direction: column;
+}
+
+.showStoreSubmenu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	margin: 0 10%;
+	margin-bottom: 1%;
+}
+
+.tableContainer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
 
 #groceryList {
 	padding: 20px 0;
@@ -273,44 +295,34 @@ th {
 	font-size: 14pt;
 }
 
-.list-item {
-	border-top: 1px solid var(--body-font);
-	width: 80%;
-	padding: 10px 0;
-	display: flex;
-	justify-content: space-between;
-}
-
-.checkboxAndName {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-
-.checkboxAndName > input[type="checkbox"] {
-	transform: scale(1.5);
-}
-
-.checkboxAndName > input[type="number"] {
-	width: 50px;
-	padding-left: 4px;
-	margin-left: 10px;
-}
-
-.checkboxAndName > span {
-	padding: 0 5px;
-}
-
-.prices-div {
-	display: flex;
-	justify-content: space-between;
-}
-.prices-div > span {
-	padding-right: 10px;
-}
-
 .itemChecked {
 	text-decoration: line-through;
+}
+
+/* buttons */
+
+.strong-button {
+	background-color: var(--header-color);
+	color: var(--header-font);
+	padding: 6px 10px;
+
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+
+	transition-duration: 0.2s;
+	box-shadow: none;
+
+	font-size: 14pt;
+	text-decoration: none;
+}
+.strong-button:hover {
+	box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.24), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+}
+
+.small {
+	font-size: 10pt;
+	padding: 3px 5px;
 }
 
 .submit-button {
@@ -318,8 +330,14 @@ th {
 	color: var(--header-font);
 	padding: 12px 20px;
 	margin-right: 10%;
+	margin-top: 10px;
+
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
-	float: right;
+	align-self: flex-end;
+}
+
+.submit-button:hover {
+	background-color: var(--header-dropdown-background);
 }
