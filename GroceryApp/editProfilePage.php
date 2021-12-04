@@ -60,7 +60,7 @@ catch(PDOException $e){
 				<nav class="menu">
 					<?php
 						if($_SESSION['userType'] == "Admin"){
-							echo '<li><a class="nav-link" href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
+							echo '<li><a class="nav-link" href="editAvailableItems.php">Admin</a></li>';
 						}
 					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>

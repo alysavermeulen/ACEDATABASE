@@ -25,12 +25,8 @@
 					<a class="logo-link" href="./index.php">Grocery App</a>
 				</h1>
 				<nav class="menu">
-					<?php
-						if($_SESSION['userType'] == "Admin"){
-							echo '<li><a class="nav-link" href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
-						}
-					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
+                    <li><a class="nav-link" href="./editProfilePage.php">My Profile</a></li>
 					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
@@ -47,7 +43,6 @@
                         <li><a href="editItemSearch.php" style="color: #0b6fa6">Edit Grocery Item</a></li>
                         <li><a href="removeItemPage.php" style="color: #0b6fa6">Remove Grocery Item</a></li>
                         <li><a href="addCategoryPage.php" style="color: #0b6fa6">Edit Store Categories</a></li>
-                        <li><a href="editProfilePage.php" style="color: #0b6fa6">Edit Profile</a></li>
                         <li><a href="editUserTypesPage.php" style="color: #0b6fa6">Edit User Types</a></li>
                     <ul>
                 </nav>
