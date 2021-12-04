@@ -49,7 +49,7 @@ session_start();
 			$_SESSION['username'] = $username;
 			$_SESSION['userType'] = $userType;
         	$db = null;
-			header("Location: showStore.php");
+			header("Location: groceryList.php");
 		}
 
         exit();
