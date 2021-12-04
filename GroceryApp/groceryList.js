@@ -16,7 +16,7 @@ function addItem(itemId, item, price, quantity) {
 	let itemPrice = document.createElement("td");
 	itemPrice.setAttribute("id", "itemPrice");
 	//format the price of the item
-	let displayPrice = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+	let displayPrice = price.toFixed(2).replace(/\d(?=(\d{3})+\.,)/g, "$&,");
 	itemPrice.innerHTML = `$${displayPrice}`;
 
 	// create a <span>total price</span>
@@ -25,7 +25,7 @@ function addItem(itemId, item, price, quantity) {
 	//format the price of the item
 	let displayTotal = (price * quantity)
 		.toFixed(2)
-		.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+		.replace(/\d(?=(\d{3})+\.,)/g, "$&,");
 	totalPrice.innerHTML = `$${displayTotal}`;
 
 	//create a checkbox <input>
@@ -107,7 +107,7 @@ function updateRowTotal(quantityField, itemPrice, totalPrice) {
 	let quantity = Number(quantityField.value);
 	let newTotal = (price * quantity)
 		.toFixed(2)
-		.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+		.replace(/\d(?=(\d{3})+\.,)/g, "$&,");
 	totalPrice.innerHTML = `$${newTotal}`;
 	recalculateListTotal();
 }
@@ -126,6 +126,6 @@ function recalculateListTotal() {
 	}
 
 	//reformat the new total
-	newTotal = newTotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+	newTotal = newTotal.toFixed(2).replace(/\d(?=(\d{3})+\.,)/g, "$&,");
 	document.querySelector("#totalPrice").innerHTML = `$${newTotal}`;
 }
