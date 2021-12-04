@@ -92,7 +92,7 @@
                                         <td>'.$tuple['lastName'].'</td>
                                         <td>'.$tuple['username'].'</td>
                                         <td>'.$tuple['userType'].'</td>
-                                        <td><a href="editUserType.php?username='.$tuple['username'].'" style="color: #0b6fa6">'.$message.'</a></td>
+                                        <td><a class="strong-button small" href="editUserType.php?username='.$tuple['username'].'">'.$message.'</a></td>
                                     </tr>';
                             }
                         }
