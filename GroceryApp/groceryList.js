@@ -4,23 +4,23 @@
  * @param {number} price Price of the grocery list item to be added
  * @param {number} quantity Quantity of the grocery list item
  */
-function addItem(item, price, quantity) {
-	var listID = document.querySelector("#groceryList");
+function addItem(itemId, item, price, quantity) {
+	var tableBody = document.querySelector("#groceryList-body");
 
 	// create a <span>item name</span>
-	let itemName = document.createElement("span");
+	let itemName = document.createElement("td");
 	itemName.setAttribute("id", "itemName");
 	itemName.innerHTML = item;
 
 	// create a <span>item price</span>
-	let itemPrice = document.createElement("span");
+	let itemPrice = document.createElement("td");
 	itemPrice.setAttribute("id", "itemPrice");
 	//format the price of the item
 	let displayPrice = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 	itemPrice.innerHTML = `$${displayPrice}`;
 
 	// create a <span>total price</span>
-	let totalPrice = document.createElement("span");
+	let totalPrice = document.createElement("td");
 	totalPrice.setAttribute("id", "itemPrice");
 	//format the price of the item
 	let displayTotal = (price * quantity)
@@ -37,7 +37,7 @@ function addItem(item, price, quantity) {
 	//<input type="number" name = "quantity" value="1" min="0" style="width: 4em"></input>
 	let quantityField = document.createElement("input");
 	quantityField.setAttribute("type", "number");
-	quantityField.setAttribute("name", item);
+	quantityField.setAttribute("name", itemId);
 	quantityField.setAttribute("min", 0);
 	quantityField.setAttribute("value", quantity);
 
@@ -55,29 +55,33 @@ function addItem(item, price, quantity) {
 		}
 	});
 
-	// nest the contents inside the left div
-	let left_div = document.createElement("div");
-	left_div.setAttribute("class", "checkboxAndName");
-	left_div.appendChild(checkbox);
-	left_div.appendChild(quantityField);
-	left_div.appendChild(itemName);
-
-	// nest the contents inside the right div
-	let right_div = document.createElement("div");
-	right_div.setAttribute("class", "prices-div");
-	right_div.appendChild(itemPrice);
-	right_div.appendChild(totalPrice);
+	//<td>checkbox</td>
+	//<td>Quantity</td>
+	//<td>Item</td>
+	//<td>Item Price</td>
+	//<td><span></td>
+	//<td id="totalPrice">$0.00</td>
 
 	// nest the contents inside the list item
-	let newListItem = document.createElement("li");
-	newListItem.setAttribute("class", "list-item");
+	let newListItem = document.createElement("tr");
+	//newListItem.setAttribute("class", "list-item");
 	newListItem.setAttribute("id", "item");
-	newListItem.appendChild(left_div);
-	newListItem.appendChild(right_div);
+	//add the checkbox
+	let checkboxHolder = document.createElement("td");
+	checkboxHolder.appendChild(checkbox);
+	newListItem.appendChild(checkboxHolder);
+	//add the quantity field
+	let quantityFieldHolder = document.createElement("td");
+	quantityFieldHolder.appendChild(quantityField);
+	newListItem.appendChild(quantityFieldHolder);
+	newListItem.appendChild(itemName);
+	newListItem.appendChild(itemPrice);
+	newListItem.appendChild(document.createElement("td"));
+	newListItem.appendChild(totalPrice);
 
 	//append the new list item to the end of the list (before the list total)
-	let ListTotal = document.querySelector("#total");
-	listID.insertBefore(newListItem, ListTotal);
+	let ListTotal = document.querySelector("#listTotal");
+	tableBody.insertBefore(newListItem, ListTotal);
 
 	//update the total sum of the list
 	recalculateListTotal();
@@ -99,7 +103,6 @@ function checkBox(checkbox, quantityField, itemName, itemPrice, totalPrice) {
 }
 
 function updateRowTotal(quantityField, itemPrice, totalPrice) {
-	console.log("Changing");
 	let price = Number(itemPrice.innerHTML.substring(1));
 	let quantity = Number(quantityField.value);
 	let newTotal = (price * quantity)
@@ -112,12 +115,12 @@ function updateRowTotal(quantityField, itemPrice, totalPrice) {
 function recalculateListTotal() {
 	//set the value of newTotal to 0
 	var newTotal = 0;
-	var listID = document.querySelector("#groceryList");
+	var tableBody = document.querySelector("#groceryList-body");
 
 	//go through the list and add the value of each item to the total
-	for (let child of listID.children) {
-		if (child.id != "total") {
-			let price = Number(child.lastChild.lastChild.innerHTML.substring(1));
+	for (let child of tableBody.children) {
+		if (child.id != "listTotal") {
+			let price = Number(child.lastChild.innerHTML.substring(1));
 			newTotal += price;
 		}
 	}

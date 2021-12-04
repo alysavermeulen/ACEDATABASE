@@ -26,10 +26,9 @@ session_start();
 
         foreach($result_set as $tuple){
             //get the name of the food in the user's cart
-            $foodName = $tuple['foodName'];
             $foodID = $tuple['foodID'];
             //use the name to retrieve the new quantity from the cart
-            $newQuantity = $_POST[$foodName];
+            $newQuantity = $_POST[$foodID];
             $oldQuantity = $tuple['quantity'];
             
             // if quantity == 0, delete the item from the cart
