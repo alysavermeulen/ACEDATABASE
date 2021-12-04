@@ -55,7 +55,7 @@ catch(PDOException $e){
     <div class="page">
         <header class="menu-container">
 				<h1 class="logo">
-					<a class="logo-link" href="./index.html">Grocery App</a>
+					<a class="logo-link" href="./index.php">Grocery App</a>
 				</h1>
 				<nav class="menu">
 					<?php

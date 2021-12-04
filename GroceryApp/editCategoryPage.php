@@ -71,7 +71,7 @@ catch(PDOException $e){
 		<div class="page">
 			<header class="menu-container">
 				<h1 class="logo">
-					<a class="logo-link" href="./index.html">Grocery App</a>
+					<a class="logo-link" href="./index.php">Grocery App</a>
 				</h1>
 				<nav class="menu">
 					<?php
@@ -151,7 +151,7 @@ catch(PDOException $e){
                                 echo '<tr>
                                         <td>'.$tuple['name'].'</td>
                                         <td>'.$tuple['description'].'</td>
-                                        <td><a href="editCategoryPage.php?name='.$tuple['name'].'" style="color: #0b6fa6">Edit Description</a></td>
+                                        <td><a class="strong-button small" href="editCategoryPage.php?name='.$tuple['name'].'">Edit</a></td>
                                     </tr>';
                         }
                         echo '</tbody>

@@ -46,6 +46,9 @@
                         <li><a href="addItemPage.php" style="color: #0b6fa6">Add Grocery Item</a></li>
                         <li><a href="editItemSearch.php" style="color: #0b6fa6">Edit Grocery Item</a></li>
                         <li><a href="removeItemPage.php" style="color: #0b6fa6">Remove Grocery Item</a></li>
+                        <li><a href="addCategoryPage.php" style="color: #0b6fa6">Edit Store Categories</a></li>
+                        <li><a href="editProfilePage.php" style="color: #0b6fa6">Edit Profile</a></li>
+                        <li><a href="editUserTypesPage.php" style="color: #0b6fa6">Edit User Types</a></li>
                     <ul>
                 </nav>
                 </p>
