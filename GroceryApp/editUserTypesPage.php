@@ -1,12 +1,13 @@
 <?php
-session_start();
-?>
+    session_start();
 
-<?php
+    if(empty($_SESSION['username'])){
+        header("Location: groceryLogin.php");
+    }
 
-if($_SESSION['userType'] != "Admin"){
-    header("Location: showStore.php");
-}
+    else if($_SESSION['userType'] != "Admin"){
+        header("Location: showStore.php");
+    }
 
 ?>
 
@@ -18,29 +19,20 @@ if($_SESSION['userType'] != "Admin"){
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="page">
+<div class="page">
         <header class="menu-container">
-            <h1 class="logo">455: Database Systems</h1>
-            <nav class="menu">
-                <?php
-
-                if($_SESSION['userType'] == "Admin"){
-                    echo '<li><a href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
-                }
-
-                ?>
-                <li class="dropdown">
-                    <span>Pages &#9662;</span>
-                    <ul class="features-menu">
-                        <!-- Start of submenu -->
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="passengerIndex.html">Airplane Passengers</a></li>
-                    </ul>
-                    <!-- End of submenu -->
-                </li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signOut.php">Sign Out</a></li>
-            </nav>
+                <h1 class="logo">
+                    <a class="logo-link" href="./index.html">Grocery App</a>
+                </h1>
+                <nav class="menu">
+                    <?php
+                        if($_SESSION['userType'] == "Admin"){
+                            echo '<li><a class="nav-link" href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
+                        }
+                    ?>
+                    <li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
+                    <li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
+                </nav>
         </header>
         <article class="content">
 
@@ -48,6 +40,13 @@ if($_SESSION['userType'] != "Admin"){
             <header>
                 <h2>Edit User Types</h2>
             </header>
+
+            <?php
+                if(isset($_SESSION['success'])){
+                    $success = $_SESSION['success'];
+                    echo "<br><span><b>$success</b></span>";
+                }
+            ?>
 
             <!-- Show All Users and Types (User Table)-->
             <div>
@@ -73,8 +72,9 @@ if($_SESSION['userType'] != "Admin"){
                                 <thead>
                                     <tr>
                                     <th>First Name</th>
-                                    <th>LastName</th>
+                                    <th>Last Name</th>
                                     <th>Username</th>
+                                    <th>User Type</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -84,11 +84,15 @@ if($_SESSION['userType'] != "Admin"){
                                 if ($tuple['userType'] == "Admin"){
                                     $message = "Switch to Standard User";
                                 }
+                                else{
+                                    $message = "Switch to Admin";
+                                }
                                 echo '<tr>
                                         <td>'.$tuple['firstName'].'</td>
-                                        <td>'.$tuple['last Name'].'</td>
+                                        <td>'.$tuple['lastName'].'</td>
                                         <td>'.$tuple['username'].'</td>
-                                        <td><a href="editUserType.php?foodID='.$tuple['username'].'" style="color: #0b6fa6">'.$message.'</a></td>
+                                        <td>'.$tuple['userType'].'</td>
+                                        <td><a href="editUserType.php?username='.$tuple['username'].'" style="color: #0b6fa6">'.$message.'</a></td>
                                     </tr>';
                             }
                         }
@@ -108,3 +112,7 @@ if($_SESSION['userType'] != "Admin"){
     </div>
 </body>
 </html>
+
+<?php
+    unset($_SESSION['success']);
+?>

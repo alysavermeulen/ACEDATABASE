@@ -1,5 +1,10 @@
 <?php
-session_start();
+    session_start();
+
+    if(empty($_SESSION['username'])){
+        header("Location: groceryLogin.php");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +27,7 @@ session_start();
 						}
 					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 		</header>
         <article class="content">
@@ -55,15 +60,34 @@ session_start();
                     <div class="category-menu">
                         <!-- Start of submenu -->
                         <form action="showStore.php" method="post">
-                          <li><input type="checkbox" name="categories[]" value="Beverages" /> Beverages</li>
-                          <li><input type="checkbox" name="categories[]" value="Cookies, Snacks, and Candy" /> Cookies, Snacks, and Candy</li>
-                          <li><input type="checkbox" name="categories[]" value="Frozen Foods" /> Frozen Foods</li>
-                          <li><input type="checkbox" name="categories[]" value="Fruits" /> Fruits</li>
-                          <li><input type="checkbox" name="categories[]" value="Vegetables" /> Vegetables</li>
-                          <li><input type="checkbox" name="categories[]" value="Grains and Pasta" /> Grains and Pasta</li>
-                          <li><input type="checkbox" name="categories[]" value="Meat and Seafood" /> Meat and Seafood</li>
-                          <li><input type="checkbox" name="categories[]" value="Dairy" /> Dairy</li>
-                          <li><input type="submit" value=" Submit " /></li>
+                            <?php
+
+                                //path to the SQLite database file
+                                $db_file = './myDB/grocery.db';
+
+                                try {
+                                    //open connection to the grocery database file
+                                    $db = new PDO('sqlite:' . $db_file);
+
+                                    //set errormode to use exceptions
+                                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                                    $qry = "select * from category order by name;";
+                                    $result_set = $db->query($qry);
+
+                                    foreach($result_set as $tuple){
+                                        echo '<li><input type="checkbox" name="categories[]" value="'.$tuple['name'].'" /> '.$tuple['name'].'</li>';
+                                    }
+
+                                    //disconnect from db
+                                    $db = null;
+                                }
+                                catch(PDOException $e) {
+                                    die('Exception : '.$e->getMessage());
+                                }
+                            ?>
+
+                            <li><input type="submit" value=" Submit " /></li>
                         </form>
                     </div>
                     <!-- End of submenu -->

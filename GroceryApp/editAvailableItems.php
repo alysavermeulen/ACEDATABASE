@@ -1,12 +1,13 @@
 <?php
-session_start();
-?>
+    session_start();
 
-<?php
+    if(empty($_SESSION['username'])){
+        header("Location: groceryLogin.php");
+    }
 
-if($_SESSION['userType'] != "Admin"){
-    header("Location: showStore.php");
-}
+    else if($_SESSION['userType'] != "Admin"){
+        header("Location: showStore.php");
+    }
 
 ?>
 
@@ -30,7 +31,7 @@ if($_SESSION['userType'] != "Admin"){
 						}
 					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
 

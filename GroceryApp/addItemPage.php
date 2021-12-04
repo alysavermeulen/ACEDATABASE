@@ -1,12 +1,13 @@
 <?php
-session_start();
-?>
+	session_start();
 
-<?php
+	if(empty($_SESSION['username'])){
+		header("Location: groceryLogin.php");
+	}
 
-if($_SESSION['userType'] != "Admin"){
-    header("Location: showStore.php");
-}
+	else if($_SESSION['userType'] != "Admin"){
+	    header("Location: showStore.php");
+	}
 
 ?>
 
@@ -30,7 +31,7 @@ if($_SESSION['userType'] != "Admin"){
 						}
 					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
 
@@ -66,14 +67,34 @@ if($_SESSION['userType'] != "Admin"){
 					/>
 
 					<div>Category:</div><hr style="height:10px; visibility:hidden;" />
-					<div><input type="radio" name="category" value="Beverages" required><label for="Beverages"> Beverages</label></div>
-					<div><input type="radio" name="category" value="Cookies, Snacks, and Candy"><label for="Cookies, Snacks, and Candy"> Cookies, Snacks, and Candy</label><br></div>
-					<div><input type="radio" name="category" value="Frozen Foods"><label for="Frozen Foods"> Frozen Foods</label></div>
-					<div><input type="radio" name="category" value="Fruits"><label for="Fruits"> Fruits</label></div>
-					<div><input type="radio" name="category" value="Vegetables"><label for="Vegetables"> Vegetables</label></div>
-					<div><input type="radio" name="category" value="Grains and Pasta"><label for="Grains and Pasta"> Grains and Pasta</label></div>
-					<div><input type="radio" name="category" value="Meat and Seafood"><label for="Meat and Seafood"> Meat and Seafood</label></div>
-					<div><input type="radio" name="category" value="Dairy"><label for="Dairy"> Dairy</label></div>
+					<?php
+
+						//path to the SQLite database file
+                        $db_file = './myDB/grocery.db';
+
+                        try {
+                            //open connection to the grocery database file
+                            $db = new PDO('sqlite:' . $db_file);
+
+                            //set errormode to use exceptions
+                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $qry = "select * from category order by name;";
+                            $result_set = $db->query($qry);
+
+                            foreach($result_set as $tuple){
+                                echo '<div><input type="radio" name="category" value="'.$tuple['name'].'" required>
+                                	<label for="'.$tuple['name'].'"> '.$tuple['name'].'</label></div>';
+                            }
+
+                            //disconnect from db
+                            $db = null;
+                        }
+                        catch(PDOException $e) {
+                            die('Exception : '.$e->getMessage());
+                        }
+
+					?>
 
 					<input type="submit" value="Add Food Item" />
 

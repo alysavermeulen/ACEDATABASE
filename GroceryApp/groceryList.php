@@ -1,5 +1,10 @@
 <?php
-session_start();
+	session_start();
+
+	if(empty($_SESSION['username'])){
+		header("Location: groceryLogin.php");
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +28,7 @@ session_start();
 						}
 					?>
 					<li><a class="nav-link" href="./showStore.php">Add Item to Cart</a></li>
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
 

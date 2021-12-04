@@ -7,17 +7,32 @@ session_start();
 <body>
 <?php
     
-    $editSuccess = "Profile info successfully updated!";
+    $editSuccess = "User type successfully switched!";
 
     // path to the SQLite database file
     $db_file = './myDB/grocery.db';
 
     try {
-        // open connection to the airport database file
+        // open connection to the grocery database file
         $db = new PDO('sqlite:' . $db_file);
 
         // set errormode to use exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $username = $_GET['username'];
+
+        // prepare to fetch user info
+        $stmt = $db->prepare("select * from user where username = ?");
+
+        // fetch info of user with this username
+        $stmt->execute([$username]);
+        $tuple = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $userType = $tuple['userType'];
+        $newUserType = 'Admin';
+        if ($userType == 'Admin'){
+            $newUserType = 'User';
+        }
 
         // prepare to update profile info
         $qry = $db->prepare('UPDATE user SET firstName = ?, lastName = ?, username = ?, password = ?, userType = ? WHERE username = ?');
@@ -29,12 +44,12 @@ session_start();
         $qry->bindparam(6, $currentUsername);
 
         // set values of input fields
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        $inputUsername = $_SESSION['username'];
-        $password = $_POST['password'];
-        $userType = $_SESSION['userType'];
-        $currentUsername = $_SESSION['username'];
+        $firstName = $tuple['firstName'];
+        $lastName = $tuple['lastName'];
+        $inputUsername = $tuple['username'];
+        $password = $tuple['password'];
+        $userType = $newUserType;
+        $currentUsername = $tuple['username'];
 
         // update food item info
         $qry->execute();
@@ -45,8 +60,8 @@ session_start();
         // disconnect from db
         $db = null;
 
-        // redirect to editProfilePage.php
-        header("Location: editProfilePage.php");
+        // redirect to editUserTypesPage.php
+        header("Location: editUserTypesPage.php");
 
         exit();
     }

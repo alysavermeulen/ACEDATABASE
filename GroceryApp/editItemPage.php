@@ -1,12 +1,13 @@
 <?php
-session_start();
-?>
+	session_start();
 
-<?php
+	if(empty($_SESSION['username'])){
+		header("Location: groceryLogin.php");
+	}
 
-if($_SESSION['userType'] != "Admin"){
-    header("Location: showStore.php");
-}
+	else if($_SESSION['userType'] != "Admin"){
+	    header("Location: showStore.php");
+	}
 
 ?>
 
@@ -74,7 +75,7 @@ catch(PDOException $e){
 						}
 					?>
 					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
-					<li><a class="nav-link" href="./groceryLogin.php">Sign Out</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
 			</header>
 
@@ -112,30 +113,41 @@ catch(PDOException $e){
 					/>
 
 					<div>Category:</div><hr style="height:10px; visibility:hidden;" />
-					<div><input type="radio" name="category" value="Beverages" 
-						<?php echo ($category == "Beverages") ? 'checked="checked"':'';?>
-    					required><label for="Beverages"> Beverages</label></div>
-					<div><input type="radio" name="category" value="Cookies, Snacks, and Candy" 
-						<?php echo ($category == "Cookies, Snacks, and Candy") ? 'checked="checked"':'';?>>
-    					<label for="Cookies, Snacks, and Candy"> Cookies, Snacks, and Candy</label><br></div>
-					<div><input type="radio" name="category" value="Frozen Foods" 
-						<?php echo ($category == "Frozen Foods") ? 'checked="checked"':'';?>>
-    					<label for="Frozen Foods"> Frozen Foods</label></div>
-					<div><input type="radio" name="category" value="Fruits" 
-						<?php echo ($category == "Fruits") ? 'checked="checked"':'';?>>
-    					<label for="Fruits"> Fruits</label></div>
-					<div><input type="radio" name="category" value="Vegetables" 
-						<?php echo ($category == "Vegetables") ? 'checked="checked"':'';?>>
-    					<label for="Vegetables"> Vegetables</label></div>
-					<div><input type="radio" name="category" value="Grains and Pasta" 
-						<?php echo ($category == "Grains and Pasta") ? 'checked="checked"':'';?>>
-    					<label for="Grains and Pasta"> Grains and Pasta</label></div>
-					<div><input type="radio" name="category" value="Meat and Seafood" 
-						<?php echo ($category == "Meat and Seafood") ? 'checked="checked"':'';?>>
-    					<label for="Meat and Seafood"> Meat and Seafood</label></div>
-    				<div><input type="radio" name="category" value="Dairy" 
-						<?php echo ($category == "Dairy") ? 'checked="checked"':'';?>>
-    					<label for="Dairy"> Dairy</label></div>
+					<?php
+
+						//path to the SQLite database file
+                        $db_file = './myDB/grocery.db';
+
+                        try {
+                            //open connection to the grocery database file
+                            $db = new PDO('sqlite:' . $db_file);
+
+                            //set errormode to use exceptions
+                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $qry = "select * from category order by name;";
+                            $result_set = $db->query($qry);
+
+                            $checked = "";
+                            foreach($result_set as $tuple){
+                            	if ($category == $tuple['name']){
+                            		$checked = "checked";
+                            	}
+                                echo '<div><input type="radio" name="category" value="'.$tuple['name'].'" '.$checked.' required>
+                                	<label for="'.$tuple['name'].'"> '.$tuple['name'].'</label></div>';
+                                if ($category == $tuple['name']){
+                            		$checked = "";
+                            	}
+                            }
+
+                            //disconnect from db
+                            $db = null;
+                        }
+                        catch(PDOException $e) {
+                            die('Exception : '.$e->getMessage());
+                        }
+
+					?>
 
 					<input type="submit" value="Edit Food Item" />
 

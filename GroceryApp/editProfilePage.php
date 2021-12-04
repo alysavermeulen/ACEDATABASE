@@ -1,5 +1,10 @@
 <?php
-session_start();
+	session_start();
+
+	if(empty($_SESSION['username'])){
+		header("Location: groceryLogin.php");
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,22 +52,21 @@ catch(PDOException $e){
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<div class="page">
-			<header class="menu-container">
-				<h1 class="logo">455: Database Systems</h1>
+    <div class="page">
+        <header class="menu-container">
+				<h1 class="logo">
+					<a class="logo-link" href="./index.html">Grocery App</a>
+				</h1>
 				<nav class="menu">
-					<li class="dropdown">
-						<span>Pages &#9662;</span>
-						<ul class="features-menu">
-							<!-- Start of submenu -->
-							<li><a href="index.html">Home</a></li>
-							<li><a href="passengerIndex.html">Airplane Passengers</a></li>
-						</ul>
-						<!-- End of submenu -->
-					</li>
-					<li><a href="index.html">Home</a></li>
+					<?php
+						if($_SESSION['userType'] == "Admin"){
+							echo '<li><a class="nav-link" href="editAvailableItems.php">Edit Available Grocery Items</a></li>';
+						}
+					?>
+					<li><a class="nav-link" href="./groceryList.php">My Cart</a></li>
+					<li><a class="nav-link" href="./signOut.php">Sign Out</a></li>
 				</nav>
-			</header>
+		</header>
 
 			<!--Title and Form-->
 			<article class="content">
