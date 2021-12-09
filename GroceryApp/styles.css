@@ -42,7 +42,8 @@ footer {
 	justify-content: space-between;
 
 	width: 100%;
-	padding: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .menu {
@@ -196,7 +197,8 @@ footer {
 .groceryForm > label {
 	display: block;
 }
-.groceryForm > input[type="text"] {
+.groceryForm > input[type="text"],
+.groceryForm > input[type="password"] {
 	width: 75%;
 	padding: 12px 20px;
 	margin: 8px 0;

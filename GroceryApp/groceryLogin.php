@@ -42,11 +42,25 @@ session_start();
 					<label for="password">Password</label>
 					<input
 						class="textInput"
-						type="text"
+						type="password"
 						name="password"
+						id="password"
 						pattern="[A-Za-z0-9]{1,}"
 						required
 					/>
+					<!-- checkbox to toggle password visibility -->
+					<label for="showPassword">Show Password</label>
+					<input type="checkbox" name="showPassword" onclick="togglePasswordVisibility()">
+					<script>
+						function togglePasswordVisibility() {
+							var x = document.getElementById("password");
+							if (x.type === "password") {
+								x.type = "text";
+							} else {
+								x.type = "password";
+							}
+						}
+					</script>
 
 					<input type="submit" value="Login" />
 

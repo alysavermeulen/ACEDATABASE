@@ -32,7 +32,7 @@ session_start();
 		if (!empty($tuple)){
 			$_SESSION['error'] = $usererror;
         	$db = null;
-			header("Location: grocerySignUp.php");
+			header("Location: grocerySignup.php");
 		}
 
 		// if username is available
